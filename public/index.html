@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Grid Layout</title>
+    <style>
+        body {
+            overflow: hidden;
+            margin: 0px;
+            width: 100vw;
+            display: inline-flex;
+            /* or 'flex' if you want it to behave as block-level */
+            padding: 30px 0px;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            gap: 40px;
+            background: #2E2E2E;
+            box-sizing: border-box;
+            /* This includes padding in the width calculation */
+        }
+
+        .blur-effect {
+            position: absolute;
+            width: 400px;
+            height: 400px;
+            background-color: #47232cb7;
+            border-radius: 50%;
+            pointer-events: none;
+            filter: blur(150px);
+            transition: transform 0.2s ease-out;
+        }
+
+        .flex-container-header {
+            color: #FFF;
+            font-family: "Instrument Serif";
+            font-size: 50px;
+            font-style: normal;
+            font-weight: 400;
+            line-height: normal;
+            z-index: 1;
+        }
+
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            grid-template-rows: repeat(3, 1fr);
+            width: 80vw;
+            height: 70vh;
+            gap: 20px 50px;
+        }
+
+        .pulsating-shadow {
+            animation: pulsate 1s infinite;
+        }
+
+        @keyframes pulsate {
+
+            0%,
+            100% {
+                box-shadow: 0 0px 0px #693341;
+                transform: scale(1);
+                /* No scale at the beginning and end */
+            }
+
+            50% {
+                box-shadow: 0 0px 30px #47232C;
+                transform: scale(1.005);
+                /* Slightly larger scale at the middle */
+            }
+        }
+
+        .grid-item {
+            /* Display and Box Model */
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            padding: 50px 10px;
+            gap: 10px;
+            border: 1px solid rgba(0, 0, 0, 0.227);
+            border-radius: 22.743px;
+            box-shadow: 0px 20.675px 28.118px 0px rgba(0, 0, 0, 0.25);
+            z-index: 1;
+
+            /* Color and Background */
+            background: #3C3C3C;
+            color: #FFF;
+
+            /* Typography */
+            font-family: "Instrument Serif";
+            font-size: 20px;
+            font-style: normal;
+            font-weight: 300;
+            line-height: normal;
+        }
+
+        .grid-inner-box-keys {
+            width: 60px;
+            /* Set width to 100px /
+            height: 60px;
+            / Set height to 100px */
+            padding: 10px;
+            font-size: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            border: 2px solid rgba(212, 212, 212, 0.387);
+            border-radius: 11px;
+        }
+
+        /* Styles for melodies */
+        .melody_on {
+            background-color: #47232C;
+            animation: pulsate 1s infinite;
+            /* Tomato red for melody one */
+        }
+
+        .large-text {
+            font-size: 80px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="blur-effect"></div>
+
+    <script>
+        // JavaScript to move the blur effect
+        document.addEventListener('mousemove', function (e) {
+            const blur = document.querySelector('.blur-effect');
+            const x = e.clientX - blur.offsetWidth * 2;
+            const y = e.clientY - blur.offsetHeight;
+            blur.style.transform = `translate(${x}px, ${y}px)`;
+        });
+    </script>
+
+
+    <audio id="audio2" controls muted style="display: none;">
+        <source src="nur_strings.wav" type="audio/wav">
+    </audio>
+    <audio id="audio1" controls muted style="display: none;">
+        <source src="nur_gittare.wav" type="audio/wav">
+    </audio>
+    <audio id="audio3" controls muted style="display: none;">
+        <source src="nur_sax.wav" type="audio/wav">
+    </audio>
+    <audio id="audio0" controls muted style="display: none;">
+        <source src="nur_drums.wav" type="audio/wav">
+    </audio>
+    <audio id="audio4" controls muted style="display: none;">
+        <source src="nur_drums_3.wav" type="audio/wav">
+    </audio>
+    <audio id="audio5" controls muted style="display: none;">
+        <source src="nur_gittare_2.wav" type="audio/wav">
+    </audio>
+    <audio id="audio6" controls muted style="display: none;">
+        <source src="string_neu.wav" type="audio/wav">
+    </audio>
+    <audio id="audio7" controls muted style="display: none;">
+        <source src="sax_2_bass.wav" type="audio/wav">
+    </audio>
+
+    <div class="flex-container-header" id="Guitar stuff">Magic disco</div>
+
+    <div class="grid-container">
+        <div class="grid-item" id="instrument0">
+            <div class="grid-inner-box-keys"><br></div>
+        </div>
+        <div class="grid-item" id="instrument1">
+            <div class="grid-inner-box-keys"><br></div>
+        </div>
+        <div class="grid-item" id="instrument2">
+            <div class="grid-inner-box-keys"><br></div>
+        </div>
+        <div class="grid-item" id="instrument3">
+            <div class="grid-inner-box-keys"><br></div>
+        </div>
+        <div class="grid-item large-text" id="emoji"> 🥁 </div>
+        <div class="grid-item large-text" id="emoji"> 🎸 </div>
+        <div class="grid-item large-text" id="emoji"> 🎻 </div>
+        <div class="grid-item large-text" id="emoji"> 🎷 </div>
+        <div class="grid-item" id="instrument4">
+            <div class="grid-inner-box-keys"><br></div>
+        </div>
+        <div class="grid-item" id="instrument5">
+            <div class="grid-inner-box-keys"><br></div>
+        </div>
+        <div class="grid-item" id="instrument6">
+            <div class="grid-inner-box-keys"><br></div>
+        </div>
+        <div class="grid-item" id="instrument7">
+            <div class="grid-inner-box-keys"><br></div>
+        </div>
+    </div>
+
+    <script>
+        setTimeout(() => {
+            for (let i = 0; i <= 7; i++) {
+                document.getElementById("audio" + i).play()
+            }
+            document.getElementById("audio0").volume = 0.3;
+            document.getElementById("audio4").volume = 0.3;
+            loop();
+        }, 2000)
+        document.addEventListener('keydown', function (event) {
+            toggleInstrument(event, true);
+        });
+
+        document.addEventListener('keyup', function (event) {
+            toggleInstrument(event, false);
+        });
+
+        function toggleInstrument(event, activate) {
+            const key = event.key;
+            // Ensure the key is between '1' and '8'
+            if (key >= '1' && key <= '8') {
+                const index = key - '1'; // Convert key to zero-based index
+                const instrumentId = `instrument${index}`;
+                const instrument = document.getElementById(instrumentId);
+                if (instrument) {
+                    if (activate) {
+                        instrument.classList.add('melody_on');
+                    } else {
+                        instrument.classList.remove('melody_on');
+                    }
+                }
+                document.getElementById(`audio${index}`).muted = !activate
+            }
+        }
+
+
+        function loop() {
+            setTimeout(() => {
+                const playAudio = (audio) => {
+                    audio.pause();
+                    audio.currentTime = 0;
+                    audio.play().catch(error => {
+                        console.error("Playback error:", error);
+                    });
+                };
+                for (let i = 0; i <= 7; i++) {
+                    playAudio(document.getElementById("audio" + i))
+                }
+                loop();
+            }, 22500)
+        }
+    </script>
+</body>
+
+</html>

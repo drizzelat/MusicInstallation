@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Audio Autoplay Example</title>
+</head>
+
+<body onload="loops()">
+
+    <audio id="drums1" controls muted>
+        <source src="drums1.wav" type="audio/wav">
+    </audio>
+    <audio id="drums2" controls muted>
+        <source src="drums2.wav" type="audio/wav">
+    </audio>
+
+    <script>
+        function loops() {
+            setTimeout(() => {
+                loops();
+                document.getElementById('drums1').play();
+                document.getElementById('drums2').play();
+                console.log("Audio started")
+            }, 2200);
+        }
+
+        function handleKeyDown(event) {
+            console.log(`Key down: ${event.key} (Code: ${event.code})`);
+        }
+
+        // Function to handle keyup events
+        function handleKeyUp(event) {
+            console.log(`Key up: ${event.key} (Code: ${event.code})`);
+        }
+
+
+        document.addEventListener('keydown', handleKeyDown);
+        document.addEventListener('keyup', handleKeyUp);
+
+    </script>
+</body>
+
+</html>
